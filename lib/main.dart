@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:video/videoplayer.dart';
 import 'package:video/videos.dart';
 void main()=>runApp(MyApp());
 
@@ -6,6 +7,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+ 
      backgroundColor: Colors.grey[200],
      drawer:Drawer(), 
      appBar: AppBar(
@@ -23,4 +25,19 @@ class MyApp extends StatelessWidget {
      body: Videos(),
     );
   }
+}
+void main()=>runApp(MaterialApp(
+  home:Videos(),
+  routes:{
+    '/video/show':(context)=>VideoPlayer(),
+    '/channel/show':(context)=>Channel();
+  }
+));
+GestureDetector(
+  onTap(),
+)
+void getdata(){
+  Future.delayed(Duration(seconds: 5),(){
+
+ });
 }

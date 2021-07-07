@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:video/comment_card.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Comment extends StatefulWidget {
   const Comment({ Key? key }) : super(key: key);
@@ -12,7 +14,8 @@ class _CommentState extends State<Comment> {
   List<Comment> comments=[];
   Future<void> getComments() async{
     try{
-     comments=await http.get();
+     Response response=await http.get("https://video-sharing");
+     comments=jsonDecode(response.body());
     }
     catch(e){
 
