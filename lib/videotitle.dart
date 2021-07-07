@@ -48,7 +48,10 @@ class _VideoTitleState extends State<VideoTitle> {
           Text('${video.dislikes}',
           style:TextStyle(fontSize:20)),
           ],  
-         )
+         ),
+         Divider(
+          height:40, 
+          color: Colors.grey[400],)
        ]
      )
     );

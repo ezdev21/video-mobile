@@ -43,7 +43,7 @@ class _ChannelState extends State<Channel> {
           ), 
            ]
           ),
-          FloatButton(
+          TextButton(
             onPressed:(){
 
             },

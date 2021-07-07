@@ -6,6 +6,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     backgroundColor: Colors.grey[200],
      drawer:Drawer(), 
      appBar: AppBar(
       title:Text(
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
           fontSize: 20,
           fontWeight: FontWeight.bold,
           letterSpacing: 2.0,
-          color: Colors.white
+          color: Colors.white,
         ),),
       centerTitle: true,
       backgroundColor: Colors.red,
