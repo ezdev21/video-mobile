@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 class Channel extends StatefulWidget {
   const Channel({ Key? key }) : super(key: key);
@@ -8,6 +9,9 @@ class Channel extends StatefulWidget {
 }
 
 class _ChannelState extends State<Channel> {
+  void channelData() async{
+     var data=await http.get('/api/channel/ata');
+  }
   @override
   Widget build(BuildContext context) {
     return Container(

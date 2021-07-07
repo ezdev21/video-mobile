@@ -30,7 +30,7 @@ class _VideoTitleState extends State<VideoTitle> {
             onPressed:(){
              
             },
-            icon: Icon.thumb_up,
+            icon: Icon(Icons.thumb_up),
             color: video.liked? Colors.green : Colors.white
             ),
           Text('${video.likes}',
@@ -39,7 +39,7 @@ class _VideoTitleState extends State<VideoTitle> {
             onPressed:(){
              
             },
-            icon: Icon.thumb_down,
+            icon: Icon(Icons.thumb_down),
             color: video.disliked? Colors.red : Colors.white
             ),
           Text('${video.dislikes}',

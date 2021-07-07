@@ -6,10 +6,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     drawer:Drawer(), 
      appBar: AppBar(
       title:Text('video sharing'),
+      centerTitle: true,
+      backgroundColor: Colors.red,
      ),
      body: Videos(),
     );
   }
-}  
+}
