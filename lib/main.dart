@@ -8,7 +8,14 @@ class MyApp extends StatelessWidget {
     return Scaffold(
      drawer:Drawer(), 
      appBar: AppBar(
-      title:Text('video sharing'),
+      title:Text(
+        'video sharing',
+        style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 2.0,
+          color: Colors.white
+        ),),
       centerTitle: true,
       backgroundColor: Colors.red,
      ),

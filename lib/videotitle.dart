@@ -18,7 +18,7 @@ class _VideoTitleState extends State<VideoTitle> {
     return Container(
      child:Column(
        children:<Widget>[
-        Text(video.title,
+        Text('${video.title}',
           style:TextStyle(fontSize:20)), 
         Row(
           children:[
@@ -31,6 +31,7 @@ class _VideoTitleState extends State<VideoTitle> {
              
             },
             icon: Icon(Icons.thumb_up),
+            iconSize: 40,
             color: video.liked? Colors.green : Colors.white
             ),
           Text('${video.likes}',
@@ -39,7 +40,9 @@ class _VideoTitleState extends State<VideoTitle> {
             onPressed:(){
              
             },
-            icon: Icon(Icons.thumb_down),
+            icon: Icon(
+              Icons.thumb_down),
+              iconSize: 40,
             color: video.disliked? Colors.red : Colors.white
             ),
           Text('${video.dislikes}',

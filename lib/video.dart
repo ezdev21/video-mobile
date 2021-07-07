@@ -8,15 +8,21 @@ class Video extends StatefulWidget {
 }
 
 class _VideoState extends State<Video> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
-      image:Image.network(),
-      child:Row(
+      child: Column(
+        children: [
+        Image(
+          image:NetworkImage('$'),
+        ),
+        Row(
         children:[
           CircleAvatar(
-
+           backgroundImage:NetworkImage('$'),
+           radius: 20,
           ),
           Text(
             '${video.title}',
@@ -24,14 +30,22 @@ class _VideoState extends State<Video> {
               fontSize:18
             ),
           )
-          Text(
-            '${video.views} views',
-            style:TextStyle(
-              fontSize:18
-            ),
-          )
         ]
+      ), 
+      Text(
+        '${channel.name}',
+        style:TextStyle(
+          fontSize:16
+        ),
       )
+      Text(
+        '${video.views} views .${video.date}',
+        style:TextStyle(
+          fontSize:14
+        ),
+      )
+        ],
+      ),
     );
   }
 }
