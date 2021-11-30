@@ -1,5 +1,6 @@
 class Channel{
+  int id;
   String name;
   String description;
-  Channel({this.name,this.description,this.})
+  Channel({this.id,this.name,this.description,this.})
 }
