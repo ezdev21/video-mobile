@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:video/videoplayer.dart';
+import 'package:video/video_watch.dart';
 import 'package:video/videos.dart';
 import 'package:video/drawer.dart';
+import 'package:video/channel_page.dart';
 
-void main()=>runApp(MyApp());
+void main()=>runApp(MaterialApp(
+  initialRoute:'/',
+  routes:{
+    '/': (context) => Loading(),
+    '/video/watch${video.id}' : (context) => VideoWatch(),
+    'channel/show/${channel.id}' : (context) => ChannelPage()
+  }
+));
 
 class MyApp extends StatelessWidget {
   @override
