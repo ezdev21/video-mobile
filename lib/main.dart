@@ -5,10 +5,12 @@ import 'package:video/drawer.dart';
 import 'package:video/channel_page.dart';
 
 void main()=>runApp(MaterialApp(
-  initialRoute:'/',
+  initialRoute:'/loading',
   routes:{
-    '/': (context) => Loading(),
+    '/loading': (context) => Loading(),
+    '/' : (context) => Videos(),
     '/video/watch${video.id}' : (context) => VideoWatch(),
+    '/video/upload' : (context) => VideoUpload(),
     'channel/show/${channel.id}' : (context) => ChannelPage()
   }
 ));
@@ -29,24 +31,9 @@ class MyApp extends StatelessWidget {
           color: Colors.white,
         ),),
       centerTitle: true,
-      backgroundColor: Colors.red,
+      backgroundColor: Colors.crimson[600],
      ),
      body: Videos(),
     );
   }
-}
-void main()=>runApp(MaterialApp(
-  home:Videos(),
-  routes:{
-    '/video/show':(context)=>VideoPlayer(),
-    '/channel/show':(context)=>Channel();
-  }
-));
-GestureDetector(
-  onTap(),
-)
-void getdata(){
-  Future.delayed(Duration(seconds: 5),(){
-
- });
 }

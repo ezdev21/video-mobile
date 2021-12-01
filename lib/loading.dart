@@ -19,7 +19,7 @@ class _LoadingState extends State<Loading> {
   void getVideos() async{
    try{
     Response response=await get('http://127.0.0.1/videos_injsonFormat');
-    videos=jsonDecode(response.body);
+    dynamic videos=jsonDecode(response.body);
     Naviator.push((context),MateriaPageRoute(builder:(context)=>Videos()),arguments:{videos:videos});
    }
    catch(e){
@@ -37,7 +37,11 @@ class _LoadingState extends State<Loading> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor:Colors.crimson[500],
-      body:Center(
+      body:child:(error)
+      ? Center(
+        Text("sorry! unable to fetch data",style:TextStyle(fontSize:30,color:Colors.white))
+      )
+      : Center(
         child:SpinKitFadingCube(
           color:Colors.white,
           size:80.0
