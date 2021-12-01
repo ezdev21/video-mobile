@@ -1,6 +1,8 @@
 class Post{
+  int id;
   int channel_id;
+  String title;
   String body;
-  String url;
-  Post({this.channel_id,this.body,this.url});
+  String imageUrl;
+  Post({this.id,this.channel_id,this.title,this.body,this.imageUrl});
 }

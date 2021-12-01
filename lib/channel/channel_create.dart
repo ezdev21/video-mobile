@@ -10,6 +10,14 @@ class ChannelCreate extends StatefulWidget {
 class _ChannelCreateState extends State<ChannelCreate> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child:Form(
+        child:Column(
+          TextFormField(
+            
+          )
+        )
+      )
+    );
   }
 }
