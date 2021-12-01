@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class AboutChannel extends StatefulWidget {
-  const AboutChannel({ Key? key }) : super(key: key);
+class ChannelAbout extends StatefulWidget {
+  ChannelAbout({Key? key}) : super(key: key);
 
   @override
-  _AboutChannelState createState() => _AboutChannelState();
+  _ChannelAboutState createState() => _ChannelAboutState();
 }
 
-class _AboutChannelState extends State<AboutChannel> {
+class _ChannelAboutState extends State<ChannelAbout> {
   @override
   Widget build(BuildContext context) {
     return Container(
