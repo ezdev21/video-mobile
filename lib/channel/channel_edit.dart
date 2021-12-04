@@ -37,6 +37,20 @@ class _ChannelEditState extends State<ChannelEdit> {
              
            }
           ),
+          SizedBox(height:20),
+          TextButton(
+            onPressed:(){
+             try{
+              Response response=post('https://127.0.0.1:8000/api/channel/create');
+
+             }
+             catch(e){
+
+             }
+            },
+            color:Colors.crimson,
+            child:Text('edit',style:TextStyle(fontSize:20,color:Colors.white))
+          )
         )
       )
     );
