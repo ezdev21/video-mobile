@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:email_validator/email_validator.dart';
 
 class LoinForm extends StatefulWidget {
   LoinForm({Key? key}) : super(key: key);
@@ -29,13 +30,14 @@ class _LoinFormState extends State<LoinForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       body:Form(
+       autovalidate:true,
        key:_formKey,
        child:Column(
          mainAxisAlignment:MainAxisAlignment.center,
          children:[
            TextFormField(
             controller:_emailController,
-            validator:(val)=>val.isEmpty ? 'please enter a valid email' :null,
+            validator: (value) => EmailValidator.validate(value) ? null : "Please enter a valid email",
             decoration:TextFieldDecoration(
 
             )
