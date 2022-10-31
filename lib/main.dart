@@ -29,14 +29,38 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  
+  final searchController=TextEditingController();
+   
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xffdc143d),
-        title: Text(widget.title),
-        centerTitle:true
+        title: TextField(
+            controller: searchController,
+            decoration: InputDecoration(
+              labelText:'search',
+              fillColor:Colors.white,
+              filled: true,
+              hintText: 'search videos,channels...'
+            ),
+          ),
+        centerTitle: true,
+        actions:[
+          IconButton(
+            onPressed: (){
+              Navigator.of(context).push(MaterialPageRoute(builder:(context)=>SearchPage(),settings:RouteSettings(arguments:{searchQuery:searchController.text})));
+            },
+            icon:Icon(Icons.search)
+          ),
+        ]
       ),
       body: Center(
         child: SpinKitFadingCube(
