@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:video_mobile/screens/auth/login.dart';
 
 class AppDrawer extends StatefulWidget {
   const AppDrawer({super.key});
@@ -34,7 +35,7 @@ class _AppDrawerState extends State<AppDrawer> {
             title: Text('login'),
             leading: Icon(Icons.login),
             onTap: () => {
-
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Login()))
             },
           ),
           ListTile(
