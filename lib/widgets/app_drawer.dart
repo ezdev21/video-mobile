@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_mobile/screens/auth/login.dart';
+import 'package:video_mobile/screens/auth/register.dart';
 
 class AppDrawer extends StatefulWidget {
   const AppDrawer({super.key});
@@ -22,8 +23,8 @@ class _AppDrawerState extends State<AppDrawer> {
                   radius: 30,
                 ),
                 SizedBox(height: 10,),
-                Text('John Doe'),
-                Text('johndoe@gmail.com'),
+                Text('John Doe',style: TextStyle(color: Colors.white),),
+                Text('johndoe@gmail.com',style: TextStyle(color: Colors.white),),
                 SizedBox(height: 10,),
               ],
             ),
@@ -39,10 +40,10 @@ class _AppDrawerState extends State<AppDrawer> {
             },
           ),
           ListTile(
-            title: Text('logout'),
+            title: Text('Register'),
             leading: Icon(Icons.logout),
             onTap: () => {
-              
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Register()))
             },
           )
         ],
