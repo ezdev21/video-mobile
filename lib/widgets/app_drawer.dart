@@ -1,6 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:video_mobile/screens/auth/login.dart';
 import 'package:video_mobile/screens/auth/register.dart';
+import 'package:video_mobile/screens/home_page.dart';
+import 'package:video_mobile/services/auth.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AppDrawer extends StatefulWidget {
   const AppDrawer({super.key});
@@ -13,7 +16,27 @@ class _AppDrawerState extends State<AppDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
+      child:Consumer<Auth>(builder:(context,auth,child){
+        return !auth.authenticated ?
+        ListView(
+          children: [
+            ListTile(
+              title: Text('Login'),
+              leading: Icon(Icons.login),
+              onTap: () => {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Login()))
+              },
+            ),
+            ListTile(
+              title: Text('Register'),
+              leading: Icon(Icons.app_registration),
+              onTap: () => {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Register()))
+              },
+            )
+          ],
+        )
+        :ListView(
         children: [
           DrawerHeader(
             child: Column(
@@ -33,21 +56,16 @@ class _AppDrawerState extends State<AppDrawer> {
             )
           ),
           ListTile(
-            title: Text('login'),
-            leading: Icon(Icons.login),
-            onTap: () => {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Login()))
-            },
-          ),
-          ListTile(
-            title: Text('Register'),
+            title: Text('Logout'),
             leading: Icon(Icons.logout),
             onTap: () => {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Register()))
+              Provider.of<Auth>(context,listen: false).logout()
+              //Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomePage()))
             },
           )
         ],
-      )
+      );
+      })
     );
   }
 }

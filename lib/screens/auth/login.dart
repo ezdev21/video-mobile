@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:video_mobile/services/auth.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -81,6 +83,8 @@ class _LoginState extends State<Login> {
                       'password':passwordController.text,
                       'device_name':'mobile'
                     };
+                    Provider.of<Auth>(context,listen:false).login(creds);
+                    Navigator.of(context).pop();
                   },
                   child: Text('Login',style: TextStyle(fontSize: 18),),
                 )

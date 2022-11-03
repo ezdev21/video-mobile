@@ -6,8 +6,7 @@ import 'package:video_mobile/screens/video/search_page.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title});
-  final String title;
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
