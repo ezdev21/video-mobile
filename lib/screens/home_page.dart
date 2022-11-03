@@ -1,9 +1,12 @@
+import 'package:video_mobile/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:dio/dio.dart';
 import 'dart:convert';
 import 'package:video_mobile/screens/video/search_page.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,16 +16,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
+  final storage = new FlutterSecureStorage();
   final searchController=TextEditingController();
   List<dynamic> videos=[];
-  Future<void> getvideos() async{
-    var res=await Dio().get('/videos');
-    videos=jsonDecode(res.data);
-  } 
 
   @override
   void initState() {
+    readToken();
     getvideos();
     super.initState();
   }
@@ -31,6 +31,16 @@ class _HomePageState extends State<HomePage> {
   void dispose() {
     searchController.dispose();
     super.dispose();
+  }
+  
+   Future<void> getvideos() async{
+    var res=await Dio().get('/videos');
+    videos=jsonDecode(res.data);
+  } 
+
+  void readToken() async{
+    String? token=await storage.read(key: 'token');
+    Provider.of<Auth>(context,listen: false).tryToken(token);
   }
 
   @override
