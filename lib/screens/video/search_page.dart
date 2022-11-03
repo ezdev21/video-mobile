@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -14,8 +14,8 @@ class _SearchPageState extends State<SearchPage> {
   List<dynamic> items=[];
 
   Future<void> getItems() async{
-    var res=await http.get(Uri.parse('http://127.0.0.1:8001/api/videos/search'));
-    items=jsonDecode(res.body);
+    var res=await Dio().get('/videos/search');
+    items=jsonDecode(res.data);
   } 
   
   @override

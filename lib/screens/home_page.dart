@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'dart:convert';
 import 'package:video_mobile/screens/video/search_page.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
@@ -17,8 +17,8 @@ class _HomePageState extends State<HomePage> {
   final searchController=TextEditingController();
   List<dynamic> videos=[];
   Future<void> getvideos() async{
-    var res=await http.get(Uri.parse('http://127.0.0.1:8000/videos'));
-    videos=jsonDecode(res.body);
+    var res=await Dio().get('/videos');
+    videos=jsonDecode(res.data);
   } 
 
   @override

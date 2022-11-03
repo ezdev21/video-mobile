@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 
 class Auth extends ChangeNotifier{
   bool logged=false;
@@ -7,7 +8,12 @@ class Auth extends ChangeNotifier{
   bool get authenticated => logged;
 
   void login(Map creds){
-    logged=true;
+    try {
+     Dio().post('/sanctum/token',data:creds);
+     logged=true; 
+    }catch(e){
+      
+    }
     notifyListeners();
   }
   void logout(){
