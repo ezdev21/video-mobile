@@ -6,6 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class Auth extends ChangeNotifier{
   User user;
   bool logged=false;
+  String token;
   final storage = new FlutterSecureStorage();
 
   bool get authenticated => logged;
@@ -14,7 +15,7 @@ class Auth extends ChangeNotifier{
   void login(Map creds) async{
     try {
      Dio.Response res=await Dio().post('/sanctum/token',data:creds);
-     String token=res.data.toString();
+     token=res.data.toString();
      tryToken(token);
      logged=true;
     }catch(e){
@@ -35,6 +36,7 @@ class Auth extends ChangeNotifier{
         );
         this.logged=true;
         this.user=User.fromJson(res.data);
+        this.token=token;
         storeToken(token);
         notifyListeners(); 
       }catch(e){
@@ -48,7 +50,19 @@ class Auth extends ChangeNotifier{
   }
 
   void logout(){
+    try{
+      Dio.Response res=await Dio().get('/user/revoke',options:Dio.Options(headers:{'Authorization':'Bearer $token'}));
+      cleanUp();
+      notifyListeners(); 
+    }catch(e){
+      
+    }
+  }
+
+  void cleanUp() async{
+    user=null;
     logged=false;
-    notifyListeners();
+    token=null;
+    await storage.delete(key: 'token');
   }
 }
