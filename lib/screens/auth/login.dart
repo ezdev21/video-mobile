@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:video_mobile/services/auth.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -13,6 +16,23 @@ class _LoginState extends State<Login> {
   final formKey=GlobalKey<FormState>();
   final emailController=TextEditingController();
   final passwordController=TextEditingController();
+
+  getDeviceInfo() async{
+    String device_name='';
+    if(Platform.isAndroid){
+      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      device_name=androidInfo.model;
+    }
+    else if(Platform.isIOS){
+      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      device_name=iosInfo.utsname.machine;
+    }
+    else{
+      device_name='unknown';
+    }
+    return device_name;
+  }
 
   @override
   void dispose() {
@@ -81,7 +101,7 @@ class _LoginState extends State<Login> {
                     Map creds={
                       'email':emailController.text,
                       'password':passwordController.text,
-                      'device_name':'mobile'
+                      'device_name':getDeviceInfo()
                     };
                     Provider.of<Auth>(context,listen:false).login(creds);
                     Navigator.of(context).pop();

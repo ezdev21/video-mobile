@@ -49,7 +49,7 @@ class Auth extends ChangeNotifier{
     storage.write(key: 'token', value: token);   
   }
 
-  void logout(){
+  void logout() async{
     try{
       Dio.Response res=await Dio().get('/user/revoke',options:Dio.Options(headers:{'Authorization':'Bearer $token'}));
       cleanUp();
