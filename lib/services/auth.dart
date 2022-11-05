@@ -6,9 +6,9 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 
 class Auth extends ChangeNotifier{
-  User user;
+  late User user;
   bool logged=false;
-  String token;
+  String token='';
   final storage = new FlutterSecureStorage();
 
   bool get authenticated => logged;
@@ -16,7 +16,7 @@ class Auth extends ChangeNotifier{
   
   void login(Map creds) async{
     try {
-     Dio.Response res=await Dio().post('/sanctum/token',data:creds);
+     var res=await Dio().post('/sanctum/token',data:creds);
      token=res.data.toString();
      tryToken(token);
      logged=true;
@@ -32,9 +32,9 @@ class Auth extends ChangeNotifier{
     }
     else{
       try{
-        Dio.Response res=await Dio().get(
+        var res=await Dio().get(
           '/user',
-          options:Dio.Options(headers:{'Authorization':'Bearer $token'})
+          options:Dio.options(headers:{'Authorization':'Bearer $token'})
         );
         this.logged=true;
         this.user=User.fromJson(res.data);

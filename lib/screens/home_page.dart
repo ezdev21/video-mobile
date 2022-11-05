@@ -7,6 +7,7 @@ import 'package:video_mobile/screens/video/search_page.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
+import 'package:video_mobile/screens/video/video_show.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -78,26 +79,32 @@ class _HomePageState extends State<HomePage> {
       :ListView.builder(
         itemCount: videos.length,
         itemBuilder: (context,index){
-          return Container(
-            child:Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Image.network('https://cdn.pixabay.com/photo/2022/09/26/23/26/african-american-7481724_960_720.jpg'),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text('video title',style:TextStyle(fontSize:17,fontWeight: FontWeight.w600)),
-                    Text('video.description',style:TextStyle(fontSize:15,color: Colors.grey[600]))
-                  ]
-                )
-              ]
+          return GestureDetector(
+            onTap: (){
+              var video=videos[index];
+              Navigator.of(context).push(MaterialPageRoute(builder:(context)=>VideoShow(),settings:RouteSettings(arguments:{video})));
+            },
+            child: Container(
+              child:Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Image.network('https://cdn.pixabay.com/photo/2022/09/26/23/26/african-american-7481724_960_720.jpg'),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text('video title',style:TextStyle(fontSize:17,fontWeight: FontWeight.w600)),
+                      Text('video.description',style:TextStyle(fontSize:15,color: Colors.grey[600]))
+                    ]
+                  )
+                ]
+              ),
+              padding: EdgeInsets.all(5),
+              margin: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color:Colors.white,
+                borderRadius: BorderRadius.circular(5)
+              ), 
             ),
-            padding: EdgeInsets.all(5),
-            margin: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              color:Colors.white,
-              borderRadius: BorderRadius.circular(5)
-            ), 
           );
         },
       )
