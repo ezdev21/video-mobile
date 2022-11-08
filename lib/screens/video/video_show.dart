@@ -9,12 +9,12 @@ class VideoShow extends StatefulWidget {
 }
 
 class _VideoShowState extends State<VideoShow> {
-  final video=ModalRoute.of(context).settings.arguments;
+  //final video=ModalRoute.of(context).settings.arguments;
   bool like=false;
   bool dislike=false;
   
   void likevideo() async{
-    dio().post('/video/${video.id}/like',data: {'userId':'${user.id}','videoId':'${video.id}','type':'like'});
+    //dio().post('/video/${video.id}/like',data: {'userId':'${user.id}','videoId':'${video.id}','type':'like'});
     like=!like;
     if(dislike){
       dislike=false;
@@ -22,7 +22,7 @@ class _VideoShowState extends State<VideoShow> {
   }
   
   void dislikevideo() async{
-    dio().post('/video/${video.id}/like',data: {'userId':'${user.id}','videoId':'${video.id}','type':'dislike'});
+    //dio().post('/video/${video.id}/like',data: {'userId':'${user.id}','videoId':'${video.id}','type':'dislike'});
     dislike=!dislike;
     if(like){
       like=false;
@@ -34,10 +34,10 @@ class _VideoShowState extends State<VideoShow> {
     return Container(
       child: Column(
         children: [
-          Image.network('${video.image}'),
+          //Image.network('${video.image}'),
           SizedBox(height: 10),
-          Text('${video.title}'),
-          Text('${video.description}'),
+          //Text('${video.title}'),
+          //Text('${video.description}'),
           Row(children: [
             IconButton(
               onPressed: (){
@@ -45,7 +45,7 @@ class _VideoShowState extends State<VideoShow> {
               },
               icon: Icon(Icons.thumb_up)
             ),
-            Text('${video.totalLikes}'),
+            //Text('${video.totalLikes}'),
             SizedBox(width: 20,),
             IconButton(
               onPressed: (){
@@ -53,7 +53,7 @@ class _VideoShowState extends State<VideoShow> {
               },
               icon: Icon(Icons.thumb_down)
             ),
-            Text('${video.totalDislikes}'),
+            //Text('${video.totalDislikes}'),
           ],)
         ],
       ),

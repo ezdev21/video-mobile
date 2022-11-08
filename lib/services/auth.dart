@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:video_mobile/models/user.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:io';
-import 'package:device_info_plus/device_info_plus.dart';
+//import 'package:device_info_plus/device_info_plus.dart';
 
 class Auth extends ChangeNotifier{
   late User user;
@@ -34,7 +34,7 @@ class Auth extends ChangeNotifier{
       try{
         var res=await Dio().get(
           '/user',
-          options:Dio.options(headers:{'Authorization':'Bearer $token'})
+          //options:Dio.options(headers:{'Authorization':'Bearer $token'})
         );
         this.logged=true;
         this.user=User.fromJson(res.data);
@@ -53,7 +53,7 @@ class Auth extends ChangeNotifier{
 
   void logout() async{
     try{
-      Dio.Response res=await Dio().get('/user/revoke',options:Dio.Options(headers:{'Authorization':'Bearer $token'}));
+      //var res=await Dio().get('/user/revoke',options:Dio.Options(headers:{'Authorization':'Bearer $token'}));
       cleanUp();
       notifyListeners(); 
     }catch(e){
@@ -62,22 +62,22 @@ class Auth extends ChangeNotifier{
   }
 
   void cleanUp() async{
-    user=null;
+    //user=null;
     logged=false;
-    token=null;
+    //token=null;
     await storage.delete(key: 'token');
   }
 
   getDeviceInfo() async{
     String device_name='';
     if(Platform.isAndroid){
-      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-      device_name=androidInfo.model;
+      //DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+      //AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      //device_name=androidInfo.model;
     }
     else if(Platform.isIOS){
-      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-      device_name=iosInfo.utsname.machine;
+      //IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      //device_name=iosInfo.utsname.machine;
     }
     else{
       device_name='unknown';

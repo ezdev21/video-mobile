@@ -70,11 +70,19 @@ class _HomePageState extends State<HomePage> {
         ]
       ),
       body: videos.length==0 ?
-      const Center(
-        child: SpinKitFadingCube(
-          size:140,
-          color: Color(0xffdc143d)
-        )
+      Padding(
+        padding:EdgeInsets.only(top: 30),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text('Welcome to Video Sharing',style: TextStyle(color: Colors.grey[600], fontSize: 30, fontFamily: 'Pacifico'),),
+            SizedBox(height: 50,),
+            SpinKitFadingCube(
+              size:140,
+              color: Color(0xffdc143d)
+            ),
+          ],
+        ),
       )
       :ListView.builder(
         itemCount: videos.length,
