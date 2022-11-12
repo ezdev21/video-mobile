@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:video_mobile/services/dio.dart';
+import 'package:video_mobile/widgets/app_drawer.dart';
+import 'package:video_mobile/widgets/custom_app_bar.dart';
 
 class VideoShow extends StatefulWidget {
   const VideoShow({super.key});
@@ -31,31 +33,36 @@ class _VideoShowState extends State<VideoShow> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          //Image.network('${video.image}'),
-          SizedBox(height: 10),
-          //Text('${video.title}'),
-          //Text('${video.description}'),
-          Row(children: [
-            IconButton(
-              onPressed: (){
-               likevideo();
-              },
-              icon: Icon(Icons.thumb_up)
-            ),
-            //Text('${video.totalLikes}'),
-            SizedBox(width: 20,),
-            IconButton(
-              onPressed: (){
-                dislikevideo();
-              },
-              icon: Icon(Icons.thumb_down)
-            ),
-            //Text('${video.totalDislikes}'),
-          ],)
-        ],
+    return Scaffold(
+      drawer: AppDrawer(),
+      backgroundColor: Colors.grey[200],
+      appBar: CustomAppBar(), 
+      body: Container(
+        child: Column(
+          children: [
+            //Image.network('${video.image}'),
+            SizedBox(height: 10),
+            //Text('${video.title}'),
+            //Text('${video.description}'),
+            Row(children: [
+              IconButton(
+                onPressed: (){
+                 likevideo();
+                },
+                icon: Icon(Icons.thumb_up)
+              ),
+              //Text('${video.totalLikes}'),
+              SizedBox(width: 20,),
+              IconButton(
+                onPressed: (){
+                  dislikevideo();
+                },
+                icon: Icon(Icons.thumb_down)
+              ),
+              //Text('${video.totalDislikes}'),
+            ],)
+          ],
+        ),
       ),
     );
   }

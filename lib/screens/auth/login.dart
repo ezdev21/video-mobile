@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:video_mobile/services/auth.dart';
+import 'package:video_mobile/widgets/app_drawer.dart';
+import 'package:video_mobile/widgets/custom_app_bar.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -24,7 +26,9 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: AppDrawer(),
       backgroundColor: Colors.grey[200],
+      appBar: CustomAppBar(),
       body: Center(
         child: Padding(
           padding: EdgeInsets.symmetric(vertical:30,horizontal:5),
@@ -32,7 +36,7 @@ class _LoginState extends State<Login> {
             key: formKey,
             child: Column(
               children: [
-                Text('Login to Video Sharing',style: TextStyle(fontSize: 25),),
+                Text('Login to Video Sharing',style: TextStyle(color: Colors.grey[600],fontSize: 23,fontFamily: 'Pacifico'),),
                 SizedBox(height: 30),
                 TextFormField(
                   controller: emailController,
@@ -55,6 +59,7 @@ class _LoginState extends State<Login> {
                 SizedBox(height:30),
                 TextFormField(
                   controller: passwordController,
+                  obscureText: true,
                   decoration: InputDecoration(
                     labelText: 'password',
                     hintText: '********',

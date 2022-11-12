@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:video_mobile/widgets/app_drawer.dart';
+import 'package:video_mobile/widgets/custom_app_bar.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -27,7 +29,9 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: AppDrawer(),
       backgroundColor: Colors.grey[200],
+      appBar: CustomAppBar(),
       body: Center(
         child: Padding(
           padding: EdgeInsets.symmetric(vertical:30,horizontal:5),
@@ -35,7 +39,7 @@ class _RegisterState extends State<Register> {
             key: formKey,
             child: Column(
               children: [
-                Text('Welcome to Video Sharing',style: TextStyle(fontSize: 25),),
+                Text('Register to Video Sharing',style: TextStyle(color: Colors.grey[600],fontSize: 23,fontFamily: 'Pacifico'),),
                 SizedBox(height: 30),
                 TextFormField(
                   controller: nameController,
@@ -77,6 +81,7 @@ class _RegisterState extends State<Register> {
                 SizedBox(height:30),
                 TextFormField(
                   controller: passwordController,
+                  obscureText: true,
                   decoration: InputDecoration(
                     labelText: 'password',
                     hintText: '********',
@@ -96,6 +101,7 @@ class _RegisterState extends State<Register> {
                 SizedBox(height:30),
                 TextFormField(
                   controller: passwordConfirmationController,
+                  obscureText: true,
                   decoration: InputDecoration(
                     labelText: 'password confirmation',
                     hintText: '********',

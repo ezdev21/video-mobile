@@ -8,6 +8,7 @@ import 'package:video_mobile/widgets/app_drawer.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:video_mobile/screens/video/video_show.dart';
+import 'package:video_mobile/widgets/custom_app_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -48,27 +49,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer:AppDrawer(),
-      appBar: AppBar(
-        backgroundColor: Color(0xffdc143d),
-        title: TextField(
-            controller: searchController,
-            decoration: InputDecoration(
-              labelText:'search',
-              fillColor:Colors.white,
-              filled: true,
-              hintText: 'search videos,channels...'
-            ),
-          ),
-        centerTitle: true,
-        actions:[
-          IconButton(
-            onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder:(context)=>SearchPage(),settings:RouteSettings(arguments:{searchController.text})));
-            },
-            icon:Icon(Icons.search)
-          ),
-        ]
-      ),
+      appBar: CustomAppBar(),
       body: videos.length==0 ?
       Padding(
         padding:EdgeInsets.only(top: 30),

@@ -1,6 +1,5 @@
 import 'package:video_mobile/screens/auth/login.dart';
 import 'package:video_mobile/screens/auth/register.dart';
-import 'package:video_mobile/screens/home_page.dart';
 import 'package:video_mobile/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
