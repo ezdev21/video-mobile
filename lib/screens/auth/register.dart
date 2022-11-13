@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:video_mobile/services/auth.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
 import 'package:video_mobile/widgets/custom_app_bar.dart';
 
@@ -131,6 +133,9 @@ class _RegisterState extends State<Register> {
                       'password':passwordController.text,
                       'password_confirmation':passwordConfirmationController.text
                     };
+                    Provider.of<Auth>(context,listen:false).register(creds);
+                    Provider.of<Auth>(context,listen:false).login({'email':emailController.text,'password':passwordController.text});
+                    Navigator.of(context).pop();
                   },
                   child: Text('Register',style: TextStyle(fontSize: 18),),
                 )

@@ -1,9 +1,9 @@
+import 'package:video_mobile/widgets/app_drawer.dart';
+import 'package:video_mobile/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:video_mobile/services/auth.dart';
 import 'package:video_mobile/services/dio.dart';
-import 'package:video_mobile/widgets/app_drawer.dart';
-import 'package:video_mobile/widgets/custom_app_bar.dart';
 
 class PasswordReset extends StatefulWidget {
   const PasswordReset({super.key});
@@ -23,12 +23,10 @@ class _PasswordResetState extends State<PasswordReset> {
   bool confirmed=false;
 
   void getConfirmationCode() async{
-    var res=await dio.post('/password_confirm',data:{'email':emailController.text});
+    var res=await dio().post('/password_confirm',data:{'email':emailController.text});
     confirmationCode=res.data;
   }
   
-  
-
   void confirm() async{
     if(confirmationCode==confirmationCodeController.text){
        login();   
@@ -60,57 +58,69 @@ class _PasswordResetState extends State<PasswordReset> {
       drawer: AppDrawer(),
       backgroundColor: Colors.grey[200],
       appBar: CustomAppBar(),
-      body: Container(
-        child: Center(
-          child: Column(
-            if(!confirmed){
-              children:[
-              Text('Enter Confirmation Code',style:TextStyle(fontSize:25)),
-              SizedBox(height: 10),
-              !emailSent ?
-              TextFormField(
-                controller: emailController,
-                decoration: InputDecoration(
-                  labelText: 'email',
-                  hintText: 'jhondoe@gmail.com',
-                  fillColor:Colors.white,
-                  filled:true,
-                  contentPadding: EdgeInsets.all(3),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
-                    borderRadius:BorderRadius.circular(5)
+      body: Padding(
+        padding: EdgeInsets.only(top: 20),
+        child: Container(
+          child: Center(
+            child: !confirmed?
+            Container(
+              child: !emailSent?
+              Column(
+                children: [
+                  Text('Enter Confirmation Email',style:TextStyle(fontSize:20)),
+                  SizedBox(height: 10),
+                  TextFormField(
+                  controller: emailController,
+                  decoration: InputDecoration(
+                    labelText: 'email',
+                    hintText: 'jhondoe@gmail.com',
+                    fillColor:Colors.white,
+                    filled:true,
+                    contentPadding: EdgeInsets.all(3),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
+                      borderRadius:BorderRadius.circular(5)
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:BorderSide(width: 2,color: Color(0xffdc143d)),
+                      borderRadius:BorderRadius.circular(5)
+                    ),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:BorderSide(width: 2,color: Color(0xffdc143d)),
-                    borderRadius:BorderRadius.circular(5)
-                  ),
-                ),
+                )
+                ],
               )
-              :TextFormField(
-                controller: confirmationCodeController,
-                decoration: InputDecoration(
-                  labelText: 'code',
-                  hintText: '',
-                  fillColor:Colors.white,
-                  filled:true,
-                  contentPadding: EdgeInsets.all(3),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
-                    borderRadius:BorderRadius.circular(5)
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:BorderSide(width: 2,color: Color(0xffdc143d)),
-                    borderRadius:BorderRadius.circular(5)
+              :Column(
+                children: [
+                  Text('Enter Confirmation Code send to ${emailController.text}',style:TextStyle(fontSize:20)),
+                  SizedBox(height: 10),
+                  TextFormField(
+                  controller: confirmationCodeController,
+                  decoration: InputDecoration(
+                    labelText: 'code',
+                    hintText: '',
+                    fillColor:Colors.white,
+                    filled:true,
+                    contentPadding: EdgeInsets.all(3),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
+                      borderRadius:BorderRadius.circular(5)
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:BorderSide(width: 2,color: Color(0xffdc143d)),
+                      borderRadius:BorderRadius.circular(5)
+                    ),
                   ),
                 ),
-              ),
-              ]
-            }
-            else{
+                ],
+              )
+            ) 
+            :Column(
               children: [
+              Text('Enter a new password',style: TextStyle(fontSize: 18),),
+              SizedBox(height:10),  
               TextFormField(
                 controller: passwordController,
-                obscureText: true,
+                obscureText:true,
                 decoration: InputDecoration(
                   labelText: 'password',
                   hintText: '********',
@@ -127,10 +137,12 @@ class _PasswordResetState extends State<PasswordReset> {
                   ),
                 ),
               ),
-              SizedBox(height:30),
+              SizedBox(height:10),
+              Text('confirm a new password',style: TextStyle(fontSize: 18),),
+              SizedBox(height:10), 
               TextFormField(
                 controller: passwordConfirmationController,
-                obscureText: true,
+                obscureText:true,
                 decoration: InputDecoration(
                   labelText: 'password confirmation',
                   hintText: '********',
@@ -148,7 +160,7 @@ class _PasswordResetState extends State<PasswordReset> {
                 ),
               ),
               ], 
-            }
+            ),
           ),
         ),
       ),
