@@ -6,13 +6,13 @@ import 'dart:io';
 //import 'package:device_info_plus/device_info_plus.dart';
 
 class Auth extends ChangeNotifier{
-  late User user;
+  late User? user;
   bool logged=false;
-  String token='';
+  String? token='';
   final storage = new FlutterSecureStorage();
 
   bool get authenticated => logged;
-  User get getUser => user;
+  User? get getUser => user;
   
   void register(Map creds) async{
     try{
@@ -67,9 +67,9 @@ class Auth extends ChangeNotifier{
   }
 
   void cleanUp() async{
-    //user=null;
+    user=null;
     logged=false;
-    //token=null;
+    token=null;
     await storage.delete(key: 'token');
   }
 

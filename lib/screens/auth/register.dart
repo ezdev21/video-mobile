@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:video_mobile/screens/auth/login.dart';
 import 'package:video_mobile/services/auth.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
 import 'package:video_mobile/widgets/custom_app_bar.dart';
@@ -42,6 +43,21 @@ class _RegisterState extends State<Register> {
             child: Column(
               children: [
                 Text('Register to Video Sharing',style: TextStyle(color: Colors.grey[600],fontSize: 23,fontFamily: 'Pacifico'),),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('already have an account?'),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        child: Text('sign in',style: TextStyle(color: Color(0xffdc143d)),),
+                        onTap:(){
+                          Navigator.push(context,MaterialPageRoute(builder: (context)=>Login()));
+                        }
+                      ),
+                    )
+                  ],
+                ),
                 SizedBox(height: 30),
                 TextFormField(
                   controller: nameController,

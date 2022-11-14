@@ -67,7 +67,7 @@ class _PasswordResetState extends State<PasswordReset> {
               child: !emailSent?
               Column(
                 children: [
-                  Text('Enter Confirmation Email',style:TextStyle(fontSize:20)),
+                  Text('Enter Your Email',style:TextStyle(fontSize:20)),
                   SizedBox(height: 10),
                   TextFormField(
                   controller: emailController,

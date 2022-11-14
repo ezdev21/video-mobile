@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
         title: TextField(
             controller: searchController,
             decoration: InputDecoration(
-              labelText:'I am looking for...',
+              labelText:'search videos channels...',
               fillColor:Colors.white,
               filled: true,
-              hintText: 'I am looking for...'
+              hintText: 'search videos channels...'
             ),
           ),
         centerTitle: true,

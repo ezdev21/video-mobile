@@ -11,7 +11,7 @@ class VideoShow extends StatefulWidget {
 }
 
 class _VideoShowState extends State<VideoShow> {
-  //final video=ModalRoute.of(context).settings.arguments;
+  //Map<dynamic,dynamic> video=ModalRoute.of(context).settings.arguments;
   bool like=false;
   bool dislike=false;
   

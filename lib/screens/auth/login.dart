@@ -1,6 +1,7 @@
 import 'package:video_mobile/screens/auth/password_reset.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:video_mobile/screens/auth/register.dart';
 import 'package:video_mobile/services/auth.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
 import 'package:video_mobile/widgets/custom_app_bar.dart';
@@ -38,6 +39,21 @@ class _LoginState extends State<Login> {
             child: Column(
               children: [
                 Text('Login to Video Sharing',style: TextStyle(color: Colors.grey[600],fontSize: 23,fontFamily: 'Pacifico'),),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("don't have an account?"),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        child: Text('sign up',style: TextStyle(color:Color(0xffdc143d)),),
+                        onTap:(){
+                          Navigator.push(context,MaterialPageRoute(builder: (context)=>Register()));
+                        }
+                      ),
+                    )
+                  ],
+                ),
                 SizedBox(height: 30),
                 TextFormField(
                   controller: emailController,

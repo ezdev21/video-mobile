@@ -1,5 +1,7 @@
 import 'package:video_mobile/screens/auth/login.dart';
 import 'package:video_mobile/screens/auth/register.dart';
+import 'package:video_mobile/screens/home_page.dart';
+import 'package:video_mobile/screens/video/video_create.dart';
 import 'package:video_mobile/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +21,20 @@ class _AppDrawerState extends State<AppDrawer> {
         return !auth.authenticated ?
         ListView(
           children: [
+            ListTile(
+              title: Text('create'),
+              leading: Icon(Icons.add),
+              onTap: () => {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>VideoCreate()))
+              },
+            ),
+            ListTile(
+              title: Text('Home'),
+              leading: Icon(Icons.home),
+              onTap: () => {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomePage()))
+              },
+            ),
             ListTile(
               title: Text('Login'),
               leading: Icon(Icons.login),
