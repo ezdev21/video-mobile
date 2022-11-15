@@ -3,7 +3,6 @@ import 'dart:html';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
 import 'package:video_mobile/widgets/custom_app_bar.dart';
 
@@ -18,25 +17,25 @@ class _VideoCreateState extends State<VideoCreate> {
   final titleController=TextEditingController();
   final descriptionController=TextEditingController();
   PlatformFile? image,video;
-  final formData={
-    'title':titleController.text,
-    'description':descriptionController.text,
-    'image':image,
-    'video':video
-  };
+
   Future captureImage() async{
     final result=await FilePicker.platform.pickFiles();
-    final image=result.files.first;
+    final image=result!.files.first;
   }
 
   Future captureVideo() async{
     final result=await FilePicker.platform.pickFiles();
-    final video=result.files.first;
+    final video=result!.files.first;
   }
   
   Future submit() async{
     try{
-     Dio().post('/video/store',data:formData); 
+     Dio().post('/video/store',data:{
+    'title':titleController.text,
+    'description':descriptionController.text,
+    'image':image,
+    'video':video
+  }); 
     }catch(e){
       
     }
@@ -78,7 +77,7 @@ class _VideoCreateState extends State<VideoCreate> {
             Text('upload image',style: TextStyle(fontSize: 18)),
             TextButton.icon(
               onPressed: ()=>captureImage(),
-              style: TextButton.styleFrom(padding: EdgeInsets.all(20), foregroundColor: Colors.white, backgroundColor: Color(0xffdc143d)),
+              style: TextButton.styleFrom(padding: EdgeInsets.all(15), foregroundColor: Colors.white, backgroundColor: Color(0xffdc143d)),
               icon: Icon(Icons.file_upload),
               label: Text('upload image here',style: TextStyle(fontSize: 18))
             ),
@@ -106,14 +105,19 @@ class _VideoCreateState extends State<VideoCreate> {
             SizedBox(height: 10,),
             TextButton.icon(
               onPressed: ()=>captureVideo(),
-              style: TextButton.styleFrom(padding: EdgeInsets.all(20), foregroundColor: Colors.white, backgroundColor: Color(0xffdc143d)),
+              style: TextButton.styleFrom(padding: EdgeInsets.all(15), foregroundColor: Colors.white, backgroundColor: Color(0xffdc143d)),
               icon: Icon(Icons.file_upload),
               label: Text('upload video here',style: TextStyle(fontSize: 18))
             ),
+            SizedBox(height:10),
             MaterialButton(
               onPressed: ()=>submit(),
-              child: Text('Submit'),
+              child: Text('Submit',style: TextStyle(fontSize: 18),),
               color: Color(0xffdc143d),
+              height: 50,
+              textColor: Colors.white,
+              minWidth: double.infinity,
+              padding: EdgeInsets.all(10),
             )
           ],
         ),
