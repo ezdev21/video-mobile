@@ -4,14 +4,14 @@ import 'package:video_mobile/models/channel.dart';
 import 'package:video_mobile/screens/post/post_show.dart';
 import 'package:video_mobile/services/dio.dart';
 
-class Posts extends StatefulWidget {
-  const Posts({super.key});
+class ChannelPost extends StatefulWidget {
+  const ChannelPost({super.key});
 
   @override
-  State<Posts> createState() => _PostsState();
+  State<ChannelPost> createState() => _ChannelPostState();
 }
 
-class _PostsState extends State<Posts> {
+class _ChannelPostState extends State<ChannelPost> {
   dynamic posts=[];
   late Channel channel;
 

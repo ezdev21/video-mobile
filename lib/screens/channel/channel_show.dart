@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:video_mobile/screens/channel/channel_community.dart';
 import 'package:video_mobile/screens/channel/channel_home.dart';
+import 'package:video_mobile/screens/channel/channel_short.dart';
 import 'package:video_mobile/screens/channel/channel_video.dart';
-import 'package:video_mobile/screens/post/posts.dart';
+import 'package:video_mobile/screens/post/channel_post.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
 
 class ChannelShow extends StatefulWidget {
@@ -54,9 +56,9 @@ class _ChannelShowState extends State<ChannelShow> with SingleTickerProviderStat
           children: [
             ChannelHome(),
             ChannelVideo(),
-            Posts(),
-            Center(child: Text('Short',style: TextStyle(fontSize: 35),),),
-            Center(child: Text('Community',style: TextStyle(fontSize: 35),),),
+            ChannelPost(),
+            ChannelShort(),
+            ChannelCommunity()
           ],
         ),
       ),
