@@ -1,5 +1,6 @@
 import 'package:video_mobile/screens/auth/login.dart';
 import 'package:video_mobile/screens/auth/register.dart';
+import 'package:video_mobile/screens/channel/chanel_create.dart';
 import 'package:video_mobile/screens/channel/channel_show.dart';
 import 'package:video_mobile/screens/home_page.dart';
 import 'package:video_mobile/screens/video/video_create.dart';
@@ -24,6 +25,13 @@ class _AppDrawerState extends State<AppDrawer> {
         ListView(
           children: [
             ListTile(
+              title: Text('create channel'),
+              leading: Icon(Icons.add),
+              onTap: () => {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChannelCreate()))
+              },
+            ),
+            ListTile(
               title: Text('channel'),
               leading: Icon(Icons.timer),
               onTap: () => {
@@ -38,7 +46,7 @@ class _AppDrawerState extends State<AppDrawer> {
               },
             ),
             ListTile(
-              title: Text('create'),
+              title: Text('upload'),
               leading: Icon(Icons.add),
               onTap: () => {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>VideoCreate()))
