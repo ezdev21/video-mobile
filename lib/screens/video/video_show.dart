@@ -12,13 +12,8 @@ class VideoShow extends StatefulWidget {
 }
 
 class _VideoShowState extends State<VideoShow> {
-  //final video=ModalRoute.of(context).settings.arguments;
+  dynamic video;
   late VideoPlayerController vpcontroller;
-  final video={
-    'title':'first video',
-    'url':'',
-    'description':'video',
-  };
   bool looping=true;
   bool liked=false;
   bool disliked=false;
@@ -64,12 +59,12 @@ class _VideoShowState extends State<VideoShow> {
 
   @override
   Widget build(BuildContext context) {
+    video=ModalRoute.of(context)!.settings.arguments;
     return Scaffold(
       drawer: AppDrawer(),
       backgroundColor: Colors.grey[200],
       appBar: CustomAppBar(), 
       body: Container(
-        padding: EdgeInsets.all(5),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

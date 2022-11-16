@@ -1,5 +1,6 @@
 import 'package:video_mobile/screens/auth/login.dart';
 import 'package:video_mobile/screens/auth/register.dart';
+import 'package:video_mobile/screens/channel/channel_show.dart';
 import 'package:video_mobile/screens/home_page.dart';
 import 'package:video_mobile/screens/video/video_create.dart';
 import 'package:video_mobile/screens/video/video_show.dart';
@@ -22,6 +23,13 @@ class _AppDrawerState extends State<AppDrawer> {
         return !auth.authenticated ?
         ListView(
           children: [
+            ListTile(
+              title: Text('channel'),
+              leading: Icon(Icons.timer),
+              onTap: () => {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChannelShow()))
+              },
+            ),
             ListTile(
               title: Text('show'),
               leading: Icon(Icons.timer_off),
