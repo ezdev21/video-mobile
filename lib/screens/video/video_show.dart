@@ -31,7 +31,6 @@ class _VideoShowState extends State<VideoShow> {
   } 
 
   void playVideo({int index=0,bool init=false}){
-    //if(index<0 || index>) return;
     vpcontroller = VideoPlayerController.network(
         'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
       ..setLooping(looping)
