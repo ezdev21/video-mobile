@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:video_mobile/screens/channel/channel_video.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
 
 class ChannelShow extends StatefulWidget {
@@ -50,7 +51,7 @@ class _ChannelShowState extends State<ChannelShow> with SingleTickerProviderStat
         body: TabBarView(
           children: [
             Center(child: Text('Home',style: TextStyle(fontSize: 35),),),
-            Center(child: Text('Video',style: TextStyle(fontSize: 35),),),
+            ChannelVideo(),
             Center(child: Text('Post',style: TextStyle(fontSize: 35),),),
             Center(child: Text('Short',style: TextStyle(fontSize: 35),),),
             Center(child: Text('Community',style: TextStyle(fontSize: 35),),),
