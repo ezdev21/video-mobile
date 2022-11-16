@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:video_mobile/models/channel.dart';
+import 'package:video_mobile/screens/post/post_show.dart';
 import 'package:video_mobile/services/dio.dart';
 
 class Posts extends StatefulWidget {
@@ -34,7 +35,7 @@ class _PostsState extends State<Posts> {
         var post=posts[index];
         return GestureDetector(
           onTap: (){
-            //Navigator.push(context, MaterialPageRoute(builder: (context)=>PostShow()));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>PostShow()));
           },
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 5),
