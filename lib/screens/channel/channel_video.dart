@@ -21,7 +21,7 @@ class _ChannelVideoState extends State<ChannelVideo> {
   }
   
   Future getChannelVideos() async{
-    Response res=await dio().get('/channel/${channel.id}/viedos');
+    Response res=await dio().get('/channel/${channel.id}/videos');
     videos=res.data;
   }
 
