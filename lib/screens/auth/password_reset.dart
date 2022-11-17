@@ -1,3 +1,4 @@
+import 'package:video_mobile/screens/home_page.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
 import 'package:video_mobile/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +68,17 @@ class _PasswordResetState extends State<PasswordReset> {
               child: !emailSent?
               Column(
                 children: [
+                  Text('reset your password here',style: TextStyle(color: Colors.grey[600],fontSize: 23,fontFamily: 'Pacifico'),),
                   Text('Enter Your Email',style:TextStyle(fontSize:20)),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      child: Text('back to home',style: TextStyle(color:Color(0xffdc143d)),),
+                      onTap:(){
+                        Navigator.push(context,MaterialPageRoute(builder: (context)=>HomePage()));
+                      }
+                    ),
+                  ),
                   SizedBox(height: 10),
                   TextFormField(
                   controller: emailController,

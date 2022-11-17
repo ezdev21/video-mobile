@@ -42,7 +42,10 @@ class _ChannelCreateState extends State<ChannelCreate> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('create a new channel',textAlign: TextAlign.center, style: TextStyle(fontSize: 25,fontFamily: 'Pacifico'),),
+            Align(
+              alignment: Alignment.center,
+              child: Text('create a new channel', style: TextStyle(color:Colors.grey[600],fontSize: 25,fontFamily: 'Pacifico'),)
+            ),
             SizedBox(height: 10,),
             Text('channel name',style: TextStyle(fontSize: 18),),
             SizedBox(height:10),

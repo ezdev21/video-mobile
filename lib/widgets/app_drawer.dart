@@ -39,7 +39,7 @@ class _AppDrawerState extends State<AppDrawer> {
               },
             ),
             ListTile(
-              title: Text('show'),
+              title: Text('watch'),
               leading: Icon(Icons.timer_off),
               onTap: () => {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>VideoShow()))
