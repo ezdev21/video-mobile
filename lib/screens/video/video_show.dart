@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:video_mobile/screens/auth/login.dart';
+import 'package:video_mobile/screens/auth/register.dart';
 import 'package:video_mobile/services/dio.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
 import 'package:video_mobile/widgets/custom_app_bar.dart';
@@ -14,7 +16,7 @@ class VideoShow extends StatefulWidget {
 class _VideoShowState extends State<VideoShow> {
   dynamic video;
   late VideoPlayerController vpcontroller;
-  bool looping=true;
+  bool looping=false;
   bool liked=false;
   bool disliked=false;
   
@@ -38,6 +40,31 @@ class _VideoShowState extends State<VideoShow> {
         vpcontroller.play();
         setState(() {});
       });
+  }
+  
+  Future openDialog(String type){
+    return showDialog(
+      context: context,
+      builder: ((context) => AlertDialog(
+        title: Text('want to $type the video?',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
+        content: Text('sign in or sign up to make your opinion count.'),
+        actions: [
+          TextButton(
+            onPressed:(){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Login())); 
+            },
+            child: Text('sign in',style: TextStyle(color:Color(0xffdc143d)),)
+          ),
+          MaterialButton(
+            onPressed:(){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Register())); 
+            },
+            color: Color(0xffdc143d),
+            child: Text('sign up',style: TextStyle(color:Colors.white),)
+          ), 
+        ],
+      ))
+    );
   }
 
   void likeVideo() async{
@@ -77,6 +104,7 @@ class _VideoShowState extends State<VideoShow> {
               IconButton(
                 color: liked? Color(0xffdc143d) :Colors.grey[600],
                 onPressed: (){
+                  openDialog('like');
                   setState(() {
                     if(disliked){
                       disliked=false;
@@ -92,6 +120,7 @@ class _VideoShowState extends State<VideoShow> {
               IconButton(
                 color: disliked? Color(0xffdc143d) :Colors.grey[600],
                 onPressed: (){
+                  openDialog('dislike');
                   setState(() {
                     if(liked){
                       liked=false;
