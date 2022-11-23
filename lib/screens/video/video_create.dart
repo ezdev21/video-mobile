@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
 import 'package:video_mobile/widgets/custom_app_bar.dart';
 
@@ -25,7 +26,19 @@ class _VideoCreateState extends State<VideoCreate> {
     final result=await FilePicker.platform.pickFiles();
     final video=result!.files.first;
   }
-  
+
+  void showToast(String status){
+    Fluttertoast.showToast(
+      msg: status=="success"? "Product ready for sell!" : "error occured while selling a product",
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.TOP,
+      timeInSecForIosWeb: 3,
+      backgroundColor: status=="success"? Color(0Xff43db80) : Colors.red,
+      textColor: Colors.white,
+      fontSize: 16.0
+    );
+  } 
+
   Future submit() async{
     try{
      Dio().post('/video/store',data:{
@@ -33,9 +46,10 @@ class _VideoCreateState extends State<VideoCreate> {
        'description':descriptionController.text,
        'image':image,
        'video':video
-    }); 
+    });
+    showToast("success");
     }catch(e){
-      
+      showToast("error");
     }
   }
 

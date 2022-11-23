@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:video_mobile/models/user.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:io';
@@ -17,8 +18,9 @@ class Auth extends ChangeNotifier{
   void register(Map creds) async{
     try{
       var res=Dio().post('sanctum/register',data:creds);
+      showToast("success");
     }catch(e){
-      print(e);
+      showToast("error");
     }
   } 
 
@@ -89,4 +91,16 @@ class Auth extends ChangeNotifier{
     }
     return device_name;
   }
+
+  void showToast(String status){
+    Fluttertoast.showToast(
+      msg: status=="success"? "Account created successfully!" : "error occured while creating account",
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.TOP,
+      timeInSecForIosWeb: 3,
+      backgroundColor: status=="success"? Color(0Xff43db80) : Colors.red,
+      textColor: Colors.white,
+      fontSize: 16.0
+    );
+  } 
 }
