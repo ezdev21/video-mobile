@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:video_mobile/models/channel.dart';
 import 'package:video_mobile/models/post.dart';
 import 'package:video_mobile/services/dio.dart';
+import 'package:video_mobile/services/post_service.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
 import 'package:video_mobile/widgets/custom_app_bar.dart';
 
@@ -14,17 +16,11 @@ class PostShow extends StatefulWidget {
 }
 
 class _PostShowState extends State<PostShow> {
-  late Channel channel;
-  late Post post;
+  
   @override
   void initState() {
-    getPost();
+    Provider.of<PostService>(context).getPost();
     super.initState();
-  }
-
-  Future getPost() async{
-    Response res=await dio().get('/channel/${channel.id}/post/${post.id}');
-    post=res.data;
   }
 
   @override
@@ -36,15 +32,15 @@ class _PostShowState extends State<PostShow> {
       body: Container(
         child: Column(
           children: [
-            post.url!.isNotEmpty?
+            Provider.of<PostService>(context).post.url!.isNotEmpty?
             AspectRatio(
               aspectRatio: 1.75,
-              child: Image.network('${post.url}'),
+              child: Image.network('${Provider.of<PostService>(context).post.url}'),
             )
             :SizedBox(),
-            Text('${post.title}',style: TextStyle(fontSize: 20),),
-            post.description!.isNotEmpty?
-            Text('${post.description}')
+            Text('${Provider.of<PostService>(context).post.title}',style: TextStyle(fontSize: 20),),
+            Provider.of<PostService>(context).post.description!.isNotEmpty?
+            Text('${Provider.of<PostService>(context).post.description}')
             :SizedBox(),
             //comments
           ],

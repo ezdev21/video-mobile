@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:video_mobile/models/channel.dart';
 import 'package:video_mobile/screens/post/post_show.dart';
 import 'package:video_mobile/services/dio.dart';
+import 'package:video_mobile/services/post_service.dart';
 
 class ChannelPost extends StatefulWidget {
   const ChannelPost({super.key});
@@ -12,27 +14,20 @@ class ChannelPost extends StatefulWidget {
 }
 
 class _ChannelPostState extends State<ChannelPost> {
-  dynamic posts=[];
-  late Channel channel;
 
   @override
   void initState() {
-    getChannelPosts();
+    Provider.of<PostService>(context).getChannelPosts();
     super.initState();
-  }
-
-  Future getChannelPosts() async{
-    Response res=await dio().get('/channel/${channel.id}/viedos');
-    posts=res.data;
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
-      itemCount: posts.length,
+      itemCount: Provider.of<PostService>(context).posts.length,
       itemBuilder: (context,index){
-        var post=posts[index];
+        var post=Provider.of<PostService>(context).posts[index];
         return GestureDetector(
           onTap: (){
             Navigator.push(context, MaterialPageRoute(builder: (context)=>PostShow()));

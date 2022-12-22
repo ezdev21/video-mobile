@@ -7,6 +7,7 @@ import 'package:video_mobile/services/dio.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoShowService extends ChangeNotifier{
+  
   dynamic video;
   late VideoPlayerController vpcontroller;
   late Channel channel;
