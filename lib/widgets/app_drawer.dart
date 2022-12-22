@@ -5,7 +5,7 @@ import 'package:video_mobile/screens/channel/channel_show.dart';
 import 'package:video_mobile/screens/home_page.dart';
 import 'package:video_mobile/screens/video/video_create.dart';
 import 'package:video_mobile/screens/video/video_show.dart';
-import 'package:video_mobile/services/auth.dart';
+import 'package:video_mobile/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +20,7 @@ class _AppDrawerState extends State<AppDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child:Consumer<Auth>(builder:(context,auth,child){
+      child:Consumer<AuthService>(builder:(context,auth,child){
         return !auth.authenticated ?
         ListView(
           children: [
@@ -98,7 +98,7 @@ class _AppDrawerState extends State<AppDrawer> {
             title: Text('Logout'),
             leading: Icon(Icons.logout),
             onTap: () => {
-              Provider.of<Auth>(context,listen: false).logout()
+              Provider.of<AuthService>(context,listen: false).logout()
               //Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomePage()))
             },
           )

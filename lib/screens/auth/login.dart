@@ -2,7 +2,7 @@ import 'package:video_mobile/screens/auth/password_reset.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:video_mobile/screens/auth/register.dart';
-import 'package:video_mobile/services/auth.dart';
+import 'package:video_mobile/services/auth_service.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
 import 'package:video_mobile/widgets/custom_app_bar.dart';
 
@@ -110,9 +110,9 @@ class _LoginState extends State<Login> {
                     Map creds={
                       'email':emailController.text,
                       'password':passwordController.text,
-                      'device_name':Provider.of<Auth>(context,listen:false).getDeviceInfo()
+                      'device_name':Provider.of<AuthService>(context,listen:false).getDeviceInfo()
                     };
-                    Provider.of<Auth>(context,listen:false).login(creds);
+                    Provider.of<AuthService>(context,listen:false).login(creds);
                     Navigator.of(context).pop();
                   },
                   child: Text('Login',style: TextStyle(fontSize: 18),),

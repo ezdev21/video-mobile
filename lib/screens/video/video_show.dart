@@ -55,7 +55,7 @@ class _VideoShowState extends State<VideoShow> {
       builder: ((context) => AlertDialog(
         title: type=='subscribe'?
         Text('want to subscribe this channel?',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),)
-        :Text('want to $type the video?',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
+        :Text('want to $type this video?',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
         content: type=='subscribe'? 
         Text('sign in to subscribe this channel')
         :Text('sign in to make your opinion count.'),

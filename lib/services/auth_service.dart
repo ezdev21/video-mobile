@@ -6,7 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:io';
 //import 'package:device_info_plus/device_info_plus.dart';
 
-class Auth extends ChangeNotifier{
+class AuthService extends ChangeNotifier{
   late User? user;
   bool logged=false;
   String? token='';

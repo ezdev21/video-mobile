@@ -1,9 +1,8 @@
-import 'package:dio/dio.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:video_mobile/services/video_create_service.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
 import 'package:video_mobile/widgets/custom_app_bar.dart';
+import 'package:provider/provider.dart';
 
 class VideoCreate extends StatefulWidget {
   const VideoCreate({super.key});
@@ -13,45 +12,6 @@ class VideoCreate extends StatefulWidget {
 }
 
 class _VideoCreateState extends State<VideoCreate> {
-  final titleController=TextEditingController();
-  final descriptionController=TextEditingController();
-  PlatformFile? image,video;
-
-  Future captureImage() async{
-    final result=await FilePicker.platform.pickFiles();
-    final image=result!.files.first;
-  }
-
-  Future captureVideo() async{
-    final result=await FilePicker.platform.pickFiles();
-    final video=result!.files.first;
-  }
-
-  void showToast(String status){
-    Fluttertoast.showToast(
-      msg: status=="success"? "Product ready for sell!" : "error occured while selling a product",
-      toastLength: Toast.LENGTH_LONG,
-      gravity: ToastGravity.TOP,
-      timeInSecForIosWeb: 3,
-      backgroundColor: status=="success"? Color(0Xff43db80) : Colors.red,
-      textColor: Colors.white,
-      fontSize: 16.0
-    );
-  } 
-
-  Future submit() async{
-    try{
-     Dio().post('/video/store',data:{
-       'title':titleController.text,
-       'description':descriptionController.text,
-       'image':image,
-       'video':video
-    });
-    showToast("success");
-    }catch(e){
-      showToast("error");
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +29,7 @@ class _VideoCreateState extends State<VideoCreate> {
             Text('video title',style: TextStyle(fontSize: 18),),
             SizedBox(height:10),
             TextFormField(
-              controller: titleController,
+              controller: Provider.of<VideoCreateService>(context,listen:false).titleController,
               decoration: InputDecoration(
                 labelText: 'video title',
                 fillColor:Colors.white,
@@ -88,7 +48,7 @@ class _VideoCreateState extends State<VideoCreate> {
             SizedBox(height:10),
             Text('upload image',style: TextStyle(fontSize: 18)),
             TextButton.icon(
-              onPressed: ()=>captureImage(),
+              onPressed: ()=>Provider.of<VideoCreateService>(context,listen:false).captureImage(),
               style: TextButton.styleFrom(padding: EdgeInsets.all(15), foregroundColor: Colors.white, backgroundColor: Color(0xffdc143d)),
               icon: Icon(Icons.file_upload),
               label: Text('upload image here',style: TextStyle(fontSize: 18))
@@ -97,7 +57,7 @@ class _VideoCreateState extends State<VideoCreate> {
             Text('video description',style: TextStyle(fontSize: 18)),
             SizedBox(height:10),
             TextFormField(
-              controller: descriptionController,
+              controller: Provider.of<VideoCreateService>(context,listen:false).descriptionController,
               maxLines: 6,
               decoration: InputDecoration(
                 labelText: 'description',
@@ -116,14 +76,14 @@ class _VideoCreateState extends State<VideoCreate> {
             ),
             SizedBox(height: 10,),
             TextButton.icon(
-              onPressed: ()=>captureVideo(),
+              onPressed: ()=>Provider.of<VideoCreateService>(context,listen:false).captureVideo(),
               style: TextButton.styleFrom(padding: EdgeInsets.all(15), foregroundColor: Colors.white, backgroundColor: Color(0xffdc143d)),
               icon: Icon(Icons.file_upload),
               label: Text('upload video here',style: TextStyle(fontSize: 18))
             ),
             SizedBox(height:10),
             MaterialButton(
-              onPressed: ()=>submit(),
+              onPressed: ()=>Provider.of<VideoCreateService>(context,listen:false).submit(),
               child: Text('Submit',style: TextStyle(fontSize: 18),),
               color: Color(0xffdc143d),
               height: 50,

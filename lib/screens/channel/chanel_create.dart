@@ -23,7 +23,7 @@ class _ChannelCreateState extends State<ChannelCreate> {
 
   void showToast(String status){
     Fluttertoast.showToast(
-      msg: status=="success"? "Product ready for sell!" : "error occured while selling a product",
+      msg: status=="success"? "new channel created successfully!" : "error occured while creating new channel",
       toastLength: Toast.LENGTH_LONG,
       gravity: ToastGravity.TOP,
       timeInSecForIosWeb: 3,
