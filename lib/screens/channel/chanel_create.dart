@@ -1,7 +1,6 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:video_mobile/services/dio.dart';
+import 'package:provider/provider.dart';
+import 'package:video_mobile/provider/channel_create_provider.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
 import 'package:video_mobile/widgets/custom_app_bar.dart';
 
@@ -13,38 +12,6 @@ class ChannelCreate extends StatefulWidget {
 }
 
 class _ChannelCreateState extends State<ChannelCreate> {
-  final nameController=TextEditingController();
-  final descriptionController=TextEditingController();
-  var image;
-  Future captureImage() async{
-    final result=await FilePicker.platform.pickFiles();
-    image=result!.files.first;
-  }
-
-  void showToast(String status){
-    Fluttertoast.showToast(
-      msg: status=="success"? "new channel created successfully!" : "error occured while creating new channel",
-      toastLength: Toast.LENGTH_LONG,
-      gravity: ToastGravity.TOP,
-      timeInSecForIosWeb: 3,
-      backgroundColor: status=="success"? Color(0Xff43db80) : Colors.red,
-      textColor: Colors.white,
-      fontSize: 16.0
-    );
-  } 
-
-  Future submit() async{
-    try{
-      dio().post('/channel/create',data:{
-        'name':nameController.text,
-        'description':descriptionController.text,
-        'image':image
-      });
-      showToast("success");
-    }catch(e){
-      showToast("error");
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +31,7 @@ class _ChannelCreateState extends State<ChannelCreate> {
             Text('channel name',style: TextStyle(fontSize: 18),),
             SizedBox(height:10),
             TextFormField(
-              controller: nameController,
+              controller: Provider.of<ChannelCreateProvider>(context,listen:false).getNameController(),
               decoration: InputDecoration(
                 labelText: 'channel title',
                 fillColor:Colors.white,
@@ -83,7 +50,7 @@ class _ChannelCreateState extends State<ChannelCreate> {
             SizedBox(height:10),
             Text('upload channel image',style: TextStyle(fontSize: 18)),
             TextButton.icon(
-              onPressed: ()=>captureImage(),
+              onPressed: ()=>Provider.of<ChannelCreateProvider>(context,listen:false).captureImage(),
               style: TextButton.styleFrom(padding: EdgeInsets.all(15), foregroundColor: Colors.white, backgroundColor: Color(0xffdc143d)),
               icon: Icon(Icons.file_upload),
               label: Text('upload image here',style: TextStyle(fontSize: 18))
@@ -92,7 +59,7 @@ class _ChannelCreateState extends State<ChannelCreate> {
             Text('channel description',style: TextStyle(fontSize: 18)),
             SizedBox(height:10),
             TextFormField(
-              controller: descriptionController,
+              controller: Provider.of<ChannelCreateProvider>(context,listen:false).getDescriptionController(),
               maxLines: 6,
               decoration: InputDecoration(
                 labelText: 'description',
@@ -112,7 +79,7 @@ class _ChannelCreateState extends State<ChannelCreate> {
             SizedBox(height: 10,),
             SizedBox(height:10),
             MaterialButton(
-              onPressed: ()=>submit(),
+              onPressed: ()=>Provider.of<ChannelCreateProvider>(context,listen:false).submit(),
               child: Text('Submit',style: TextStyle(fontSize: 18),),
               color: Color(0xffdc143d),
               height: 50,
