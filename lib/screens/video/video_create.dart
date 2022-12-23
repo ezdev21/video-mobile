@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:video_mobile/services/video_create_service.dart';
+import 'package:video_mobile/provider/video_create_provider.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
 import 'package:video_mobile/widgets/custom_app_bar.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +29,7 @@ class _VideoCreateState extends State<VideoCreate> {
             Text('video title',style: TextStyle(fontSize: 18),),
             SizedBox(height:10),
             TextFormField(
-              controller: Provider.of<VideoCreateService>(context,listen:false).titleController,
+              controller: Provider.of<VideoCreateProvider>(context,listen:false).titleController,
               decoration: InputDecoration(
                 labelText: 'video title',
                 fillColor:Colors.white,
@@ -48,7 +48,7 @@ class _VideoCreateState extends State<VideoCreate> {
             SizedBox(height:10),
             Text('upload image',style: TextStyle(fontSize: 18)),
             TextButton.icon(
-              onPressed: ()=>Provider.of<VideoCreateService>(context,listen:false).captureImage(),
+              onPressed: ()=>Provider.of<VideoCreateProvider>(context,listen:false).captureImage(),
               style: TextButton.styleFrom(padding: EdgeInsets.all(15), foregroundColor: Colors.white, backgroundColor: Color(0xffdc143d)),
               icon: Icon(Icons.file_upload),
               label: Text('upload image here',style: TextStyle(fontSize: 18))
@@ -57,7 +57,7 @@ class _VideoCreateState extends State<VideoCreate> {
             Text('video description',style: TextStyle(fontSize: 18)),
             SizedBox(height:10),
             TextFormField(
-              controller: Provider.of<VideoCreateService>(context,listen:false).descriptionController,
+              controller: Provider.of<VideoCreateProvider>(context,listen:false).descriptionController,
               maxLines: 6,
               decoration: InputDecoration(
                 labelText: 'description',
@@ -76,14 +76,14 @@ class _VideoCreateState extends State<VideoCreate> {
             ),
             SizedBox(height: 10,),
             TextButton.icon(
-              onPressed: ()=>Provider.of<VideoCreateService>(context,listen:false).captureVideo(),
+              onPressed: ()=>Provider.of<VideoCreateProvider>(context,listen:false).captureVideo(),
               style: TextButton.styleFrom(padding: EdgeInsets.all(15), foregroundColor: Colors.white, backgroundColor: Color(0xffdc143d)),
               icon: Icon(Icons.file_upload),
               label: Text('upload video here',style: TextStyle(fontSize: 18))
             ),
             SizedBox(height:10),
             MaterialButton(
-              onPressed: ()=>Provider.of<VideoCreateService>(context,listen:false).submit(),
+              onPressed: ()=>Provider.of<VideoCreateProvider>(context,listen:false).submit(),
               child: Text('Submit',style: TextStyle(fontSize: 18),),
               color: Color(0xffdc143d),
               height: 50,

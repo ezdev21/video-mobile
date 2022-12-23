@@ -4,7 +4,7 @@ import 'package:video_mobile/models/channel.dart';
 import 'package:video_mobile/models/post.dart';
 import 'package:video_mobile/services/dio.dart';
 
-class PostService extends ChangeNotifier{
+class PostProvider extends ChangeNotifier{
   dynamic posts=[];
   late Channel channel;
   late Post post;

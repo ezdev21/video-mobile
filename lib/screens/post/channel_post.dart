@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:video_mobile/models/channel.dart';
 import 'package:video_mobile/screens/post/post_show.dart';
 import 'package:video_mobile/services/dio.dart';
-import 'package:video_mobile/services/post_service.dart';
+import 'package:video_mobile/provider/post_provider.dart';
 
 class ChannelPost extends StatefulWidget {
   const ChannelPost({super.key});
@@ -17,7 +17,7 @@ class _ChannelPostState extends State<ChannelPost> {
 
   @override
   void initState() {
-    Provider.of<PostService>(context).getChannelPosts();
+    Provider.of<PostProvider>(context).getChannelPosts();
     super.initState();
   }
 
@@ -25,9 +25,9 @@ class _ChannelPostState extends State<ChannelPost> {
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
-      itemCount: Provider.of<PostService>(context).posts.length,
+      itemCount: Provider.of<PostProvider>(context).posts.length,
       itemBuilder: (context,index){
-        var post=Provider.of<PostService>(context).posts[index];
+        var post=Provider.of<PostProvider>(context).posts[index];
         return GestureDetector(
           onTap: (){
             Navigator.push(context, MaterialPageRoute(builder: (context)=>PostShow()));

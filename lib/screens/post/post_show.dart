@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:video_mobile/models/channel.dart';
 import 'package:video_mobile/models/post.dart';
-import 'package:video_mobile/services/dio.dart';
-import 'package:video_mobile/services/post_service.dart';
+import 'package:video_mobile/provider/post_provider.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
 import 'package:video_mobile/widgets/custom_app_bar.dart';
 
@@ -19,7 +18,7 @@ class _PostShowState extends State<PostShow> {
   
   @override
   void initState() {
-    Provider.of<PostService>(context).getPost();
+    Provider.of<PostProvider>(context).getPost();
     super.initState();
   }
 
@@ -32,15 +31,15 @@ class _PostShowState extends State<PostShow> {
       body: Container(
         child: Column(
           children: [
-            Provider.of<PostService>(context).post.url!.isNotEmpty?
+            Provider.of<PostProvider>(context).post.url!.isNotEmpty?
             AspectRatio(
               aspectRatio: 1.75,
-              child: Image.network('${Provider.of<PostService>(context).post.url}'),
+              child: Image.network('${Provider.of<PostProvider>(context).post.url}'),
             )
             :SizedBox(),
-            Text('${Provider.of<PostService>(context).post.title}',style: TextStyle(fontSize: 20),),
-            Provider.of<PostService>(context).post.description!.isNotEmpty?
-            Text('${Provider.of<PostService>(context).post.description}')
+            Text('${Provider.of<PostProvider>(context).post.title}',style: TextStyle(fontSize: 20),),
+            Provider.of<PostProvider>(context).post.description!.isNotEmpty?
+            Text('${Provider.of<PostProvider>(context).post.description}')
             :SizedBox(),
             //comments
           ],

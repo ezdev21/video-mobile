@@ -3,7 +3,7 @@ import 'package:video_mobile/services/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class VideoCreateService extends ChangeNotifier{
+class VideoCreateProvider extends ChangeNotifier{
   final titleController=TextEditingController();
   final descriptionController=TextEditingController();
   PlatformFile? image,video;

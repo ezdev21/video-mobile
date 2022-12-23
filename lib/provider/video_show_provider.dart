@@ -3,10 +3,9 @@ import 'package:video_mobile/models/channel.dart';
 import 'package:video_mobile/models/user.dart';
 import 'package:video_mobile/screens/auth/login.dart';
 import 'package:video_mobile/screens/auth/register.dart';
-import 'package:video_mobile/services/dio.dart';
 import 'package:video_player/video_player.dart';
 
-class VideoShowService extends ChangeNotifier{
+class VideoShowProvider extends ChangeNotifier{
   
   dynamic video;
   late VideoPlayerController vpcontroller;
