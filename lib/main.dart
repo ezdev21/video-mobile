@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:video_mobile/screens/home_page.dart';
 import 'package:video_mobile/provider/auth_provider.dart';
 import 'package:video_mobile/provider/post_provider.dart';
-import 'package:video_mobile/provider/video_create_provider.dart';
-import 'package:video_mobile/provider/video_show_provider.dart';
+import 'package:video_mobile/provider/video/video_create_provider.dart';
+import 'package:video_mobile/provider/video/video_show_provider.dart';
 
 void main() {
   runApp(

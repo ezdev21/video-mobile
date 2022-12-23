@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:video_mobile/provider/video_create_provider.dart';
+import 'package:video_mobile/provider/video/video_create_provider.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
 import 'package:video_mobile/widgets/custom_app_bar.dart';
 import 'package:provider/provider.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:video_mobile/provider/video_show_provider.dart';
+import 'package:video_mobile/provider/video/video_show_provider.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
 import 'package:video_mobile/widgets/custom_app_bar.dart';
 import 'package:video_player/video_player.dart';
