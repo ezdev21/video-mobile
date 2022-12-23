@@ -1,7 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:video_mobile/models/channel.dart';
-import 'package:video_mobile/services/dio.dart';
+import 'package:provider/provider.dart';
+import 'package:video_mobile/provider/channel/channel_community_provider.dart';
 
 class ChannelCommunity extends StatefulWidget {
   const ChannelCommunity({super.key});
@@ -11,17 +10,11 @@ class ChannelCommunity extends StatefulWidget {
 }
 
 class _ChannelCommunityState extends State<ChannelCommunity> {
-  dynamic channels;
-  late Channel channel;
+  
   @override
   void initState() {
-    getChannels();
+    Provider.of<ChannelCommunityProvider>(context,listen: false).fetchChannels();
     super.initState();
-  }
-
-  Future getChannels() async{
-    Response res=await dio().get('/channel/${channel.id}/featured-channels');
-    channels=res.data;
   }
 
   @override
@@ -32,9 +25,9 @@ class _ChannelCommunityState extends State<ChannelCommunity> {
         children: [
           Text('featured channels',style: TextStyle(fontFamily: 'Pacifico',fontSize: 25,fontWeight: FontWeight.w500),),
           ListView.builder(
-            itemCount: channels.length,
+            itemCount: Provider.of<ChannelCommunityProvider>(context,listen: false).channels.length,
             itemBuilder: ((context, index) {
-              var channel=channels[index];
+              var channel=Provider.of<ChannelCommunityProvider>(context,listen: false).channels[index];
               return Row(
                 children: [
                   channel.url?
