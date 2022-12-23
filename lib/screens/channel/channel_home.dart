@@ -1,8 +1,7 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:video_mobile/models/channel.dart';
+import 'package:provider/provider.dart';
+import 'package:video_mobile/provider/channel/channel_home_provider.dart';
 import 'package:video_mobile/screens/video/video_show.dart';
-import 'package:video_mobile/services/dio.dart';
 import 'package:video_player/video_player.dart';
 
 class ChannelHome extends StatefulWidget {
@@ -13,18 +12,11 @@ class ChannelHome extends StatefulWidget {
 }
 
 class _ChannelHomeState extends State<ChannelHome> {
-  bool homeVideo=true;
-  late VideoPlayerController vpcontroller;
-  bool looping=true;
-  bool liked=false;
-  bool disliked=false;
-  dynamic pinnedVideos=[];
-  late Channel channel;
-
+  
   @override
   void initState() {
-    getChannelVideos();
-    if(homeVideo){
+    Provider.of<ChannelHomeProvider>(context,listen:false).getChannelVideos();
+    if(Provider.of<ChannelHomeProvider>(context,listen:false).homeVideo){
       playVideo();
     }
     super.initState();
@@ -32,21 +24,16 @@ class _ChannelHomeState extends State<ChannelHome> {
   
   @override
   void dispose() {
-    vpcontroller.dispose();
+    Provider.of<ChannelHomeProvider>(context,listen:false).vpcontroller.dispose();
     super.dispose();
   } 
-
-  Future getChannelVideos() async{
-    Response res=await dio().get('/channel/${channel.id}/viedos');
-    pinnedVideos=res.data;
-  }
   
   void playVideo({int index=0,bool init=false}){
-    vpcontroller = VideoPlayerController.network(
+    Provider.of<ChannelHomeProvider>(context,listen:false).vpcontroller = VideoPlayerController.network(
         'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
-      ..setLooping(looping)
+      ..setLooping(Provider.of<ChannelHomeProvider>(context,listen:false).looping)
       ..initialize().then((_) {
-        vpcontroller.play();
+        Provider.of<ChannelHomeProvider>(context,listen:false).vpcontroller.play();
         setState(() {});
       });
   }
@@ -56,18 +43,18 @@ class _ChannelHomeState extends State<ChannelHome> {
     return Container(
       child: Column(
         children: [
-          Text('${channel.name}',style: TextStyle(color:Colors.grey[600],fontSize: 25,fontFamily: 'Pacifico',fontWeight: FontWeight.w500),),
-          Text('${channel.description}'),
-          homeVideo?
+          Text('${Provider.of<ChannelHomeProvider>(context,listen:false).channel.name}',style: TextStyle(color:Colors.grey[600],fontSize: 25,fontFamily: 'Pacifico',fontWeight: FontWeight.w500),),
+          Text('${Provider.of<ChannelHomeProvider>(context,listen:false).channel.description}'),
+          Provider.of<ChannelHomeProvider>(context,listen:false).homeVideo?
            AspectRatio(
             aspectRatio: 1.75,
-            child: VideoPlayer(vpcontroller)
+            child: VideoPlayer(Provider.of<ChannelHomeProvider>(context,listen:false).vpcontroller)
           )
           :SizedBox(),
           ListView.builder(
-          itemCount: pinnedVideos.length,
+          itemCount: Provider.of<ChannelHomeProvider>(context,listen:false).pinnedVideos.length,
           itemBuilder: (context,index){
-            var video=pinnedVideos[index];
+            var video=Provider.of<ChannelHomeProvider>(context,listen:false).pinnedVideos[index];
             return GestureDetector(
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>VideoShow()));

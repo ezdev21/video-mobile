@@ -16,16 +16,6 @@ class VideoShowProvider extends ChangeNotifier{
   bool liked=false;
   bool disliked=false;
   bool subscribed=false;
-
-  void playVideo({int index=0,bool init=false}){
-    vpcontroller = VideoPlayerController.network(
-        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
-      ..setLooping(looping)
-      ..initialize().then((_) {
-        vpcontroller.play();
-        setState(() {});
-      });
-  }
   
   Future openDialog(String type,context){
     return showDialog(

@@ -17,10 +17,19 @@ class _VideoShowState extends State<VideoShow> {
   
   @override
   void initState() {
-    Provider.of<VideoShowProvider>(context,listen: false).playVideo();
+    playVideo();
     super.initState();
   }
-  
+  void playVideo({int index=0,bool init=false}){
+    Provider.of<VideoShowProvider>(context,listen:false).vpcontroller = VideoPlayerController.network(
+        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
+      ..setLooping(Provider.of<VideoShowProvider>(context,listen:false).looping)
+      ..initialize().then((_) {
+        Provider.of<VideoShowProvider>(context,listen:false).vpcontroller.play();
+        setState(() {});
+      });
+  }
+
   @override
   void dispose() {
     Provider.of<VideoShowProvider>(context,listen: false).vpcontroller.dispose();
