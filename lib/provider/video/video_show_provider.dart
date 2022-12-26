@@ -72,7 +72,7 @@ class VideoShowProvider extends ChangeNotifier{
       }
     }
     else{
-      openDialog('subscribe',context);
+      //openDialog('subscribe',context);
     }
   }
 }
