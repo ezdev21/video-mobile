@@ -7,10 +7,12 @@ class ChannelCreateProvider extends ChangeNotifier{
   final nameController=TextEditingController();
   final descriptionController=TextEditingController();
   var image;
+  
   Future captureImage() async{
     final result=await FilePicker.platform.pickFiles();
     image=result!.files.first;
   }
+
   TextEditingController getNameController(){
     return descriptionController;
   }
