@@ -1,8 +1,7 @@
-import 'package:dio/dio.dart';
+import 'package:video_mobile/services/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:video_mobile/models/channel.dart';
 import 'package:video_mobile/models/post.dart';
-import 'package:video_mobile/services/dio.dart';
 
 class PostProvider extends ChangeNotifier{
   dynamic posts=[];

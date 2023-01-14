@@ -18,8 +18,8 @@ class _PostShowState extends State<PostShow> {
   
   @override
   void initState() {
-    Provider.of<PostProvider>(context).getPost();
     super.initState();
+    Provider.of<PostProvider>(context,listen:false).getPost();
   }
 
   @override

@@ -44,6 +44,7 @@ class ChannelCreateProvider extends ChangeNotifier{
     }catch(e){
       showToast("error");
     }
+    notifyListeners();
   }
 
 }

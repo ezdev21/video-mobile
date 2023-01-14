@@ -11,10 +11,11 @@ class ChannelCommunity extends StatefulWidget {
 
 class _ChannelCommunityState extends State<ChannelCommunity> {
   
+  var channels;
   @override
   void initState() {
-    Provider.of<ChannelCommunityProvider>(context,listen: false).fetchChannels();
     super.initState();
+    channels=Provider.of<ChannelCommunityProvider>(context,listen: false).fetchChannels();
   }
 
   @override

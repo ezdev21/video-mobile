@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:video_mobile/models/channel.dart';
 import 'package:video_mobile/services/dio.dart';
@@ -13,8 +12,13 @@ class ChannelHomeProvider extends ChangeNotifier{
   dynamic pinnedVideos=[];
   late Channel channel;
   
+  Future getChannelData() async{
+    Response res=await dio().get('/channel/${channel.id}/data');
+    channel=res.data;
+  }
+
   Future getChannelVideos() async{
-    Response res=await dio().get('/channel/${channel.id}/viedos');
+    Response res=await dio().get('/channel/${channel.id}/videos');
     pinnedVideos=res.data;
   }
 

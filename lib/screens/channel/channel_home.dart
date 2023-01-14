@@ -15,11 +15,12 @@ class _ChannelHomeState extends State<ChannelHome> {
   
   @override
   void initState() {
+    super.initState();
+    Provider.of<ChannelHomeProvider>(context,listen:false).getChannelData();
     Provider.of<ChannelHomeProvider>(context,listen:false).getChannelVideos();
     if(Provider.of<ChannelHomeProvider>(context,listen:false).homeVideo){
       playVideo();
     }
-    super.initState();
   }
   
   @override

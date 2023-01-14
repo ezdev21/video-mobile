@@ -24,7 +24,7 @@ class _VideoCreateState extends State<VideoCreate> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('upload a new video here',textAlign: TextAlign.center, style: TextStyle(fontSize: 25,fontFamily: 'Pacifico'),),
+            Text('upload a new video',textAlign: TextAlign.center, style: TextStyle(fontSize: 25,fontFamily: 'Pacifico'),),
             SizedBox(height: 10,),
             Text('video title',style: TextStyle(fontSize: 18),),
             SizedBox(height:10),

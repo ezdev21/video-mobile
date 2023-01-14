@@ -12,7 +12,7 @@ class VideoPlayerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      controller != null && controller.value.initialized
+      controller.value.initialized
           ? Container(alignment: Alignment.topCenter, child: buildVideo())
           : Container(
               height: 200,

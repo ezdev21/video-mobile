@@ -1,8 +1,7 @@
-import 'package:dio/dio.dart';
+import 'package:video_mobile/services/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:video_mobile/models/channel.dart';
 import 'package:video_mobile/screens/video/video_show.dart';
-import 'package:video_mobile/services/dio.dart';
 
 class ChannelVideo extends StatefulWidget {
   const ChannelVideo({super.key});
@@ -16,8 +15,8 @@ class _ChannelVideoState extends State<ChannelVideo> {
   late Channel channel;
   @override
   void initState() {
-    getChannelVideos();
     super.initState();
+    getChannelVideos();
   }
   
   Future getChannelVideos() async{

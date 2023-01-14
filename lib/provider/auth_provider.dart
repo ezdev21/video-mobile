@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+import 'package:video_mobile/services/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:video_mobile/models/user.dart';
@@ -17,7 +17,7 @@ class AuthProvider extends ChangeNotifier{
   
   void register(Map creds) async{
     try{
-      var res=Dio().post('sanctum/register',data:creds);
+      var res=dio().post('sanctum/register',data:creds);
       showToast("success");
     }catch(e){
       showToast("error");
@@ -26,7 +26,7 @@ class AuthProvider extends ChangeNotifier{
 
   void login(Map creds) async{
     try {
-     var res=await Dio().post('/sanctum/token',data:creds);
+     var res=await dio().post('/sanctum/token',data:creds);
      token=res.data.toString();
      tryToken(token);
      logged=true;
@@ -42,7 +42,7 @@ class AuthProvider extends ChangeNotifier{
     }
     else{
       try{
-        var res=await Dio().get('/user',options:Options(headers:{'Authorization':'Bearer $token'}));
+        var res=await dio().get('/user',options:Options(headers:{'Authorization':'Bearer $token'}));
         this.logged=true;
         this.user=User.fromJson(res.data);
         this.token=token;
@@ -60,7 +60,7 @@ class AuthProvider extends ChangeNotifier{
 
   void logout() async{
     try{
-      var res=await Dio().get('/user/revoke',options:Options(headers:{'Authorization':'Bearer $token'}));
+      var res=await dio().get('/user/revoke',options:Options(headers:{'Authorization':'Bearer $token'}));
       cleanUp();
       notifyListeners(); 
     }catch(e){

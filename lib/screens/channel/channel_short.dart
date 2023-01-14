@@ -1,10 +1,7 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:video_mobile/models/channel.dart';
 import 'package:video_mobile/provider/channel/channel_short_provider.dart';
 import 'package:video_mobile/screens/video/video_show.dart';
-import 'package:video_mobile/services/dio.dart';
 
 class ChannelShort extends StatefulWidget {
   const ChannelShort({super.key});
@@ -17,8 +14,8 @@ class _ChannelShortState extends State<ChannelShort> {
   
   @override
   void initState() {
-    Provider.of<ChannelShortProvider>(context,listen: false).getChannelShorts();
     super.initState();
+    Provider.of<ChannelShortProvider>(context,listen: false).getChannelShorts();
   }
   
   @override

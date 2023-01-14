@@ -17,8 +17,8 @@ class _ChannelPostState extends State<ChannelPost> {
 
   @override
   void initState() {
-    Provider.of<PostProvider>(context).getChannelPosts();
     super.initState();
+    Provider.of<PostProvider>(context,listen: false).getChannelPosts();
   }
 
   @override

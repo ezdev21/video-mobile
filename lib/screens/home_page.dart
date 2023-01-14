@@ -1,14 +1,13 @@
 import 'package:video_mobile/provider/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:dio/dio.dart';
 import 'dart:convert';
-import 'package:video_mobile/screens/video/search_page.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:video_mobile/screens/video/video_show.dart';
 import 'package:video_mobile/widgets/custom_app_bar.dart';
+import 'package:video_mobile/services/dio.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -36,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   }
   
    Future<void> getvideos() async{
-    var res=await Dio().get('/videos');
+    var res=await dio().get('/videos');
     videos=jsonDecode(res.data);
   } 
 

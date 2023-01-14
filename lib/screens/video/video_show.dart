@@ -4,7 +4,6 @@ import 'package:video_mobile/provider/video/video_show_provider.dart';
 import 'package:video_mobile/widgets/app_drawer.dart';
 import 'package:video_mobile/widgets/custom_app_bar.dart';
 import 'package:video_player/video_player.dart';
-import 'dart:io';
 
 class VideoShow extends StatefulWidget {
   const VideoShow({super.key});
@@ -17,8 +16,8 @@ class _VideoShowState extends State<VideoShow> {
   
   @override
   void initState() {
-    playVideo();
     super.initState();
+    playVideo();
   }
   void playVideo({int index=0,bool init=false}){
     Provider.of<VideoShowProvider>(context,listen:false).vpcontroller = VideoPlayerController.network(

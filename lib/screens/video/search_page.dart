@@ -22,8 +22,8 @@ class _SearchPageState extends State<SearchPage> {
   
   @override
   void initState() {
-    getItems();
     super.initState();
+    getItems();
   }
 
   @override
